@@ -29,7 +29,7 @@
         <a-entity id="column-sphere-container2"></a-entity>
         <a-entity id="column-sphere-container3"></a-entity>
         <a-entity id="stalag-container"></a-entity>
-
+        <a-entity id="waterdrops-container"></a-entity>
         <!-- Доп. источник света -->
         <a-light type="point" intensity="0.8" position="2 10 -5"></a-light>
     </a-scene>
@@ -215,6 +215,66 @@
                 const drop = 4 + Math.random() * 7;
                 createColumn(x, z, baseR, topR, caveHeight, caveHeight - drop, stalagContainer, '#24231f');
             }
+
+            function create_waterdrop(count,radius) {
+                // Найти все сферы и цилиндры в пещере (сталактиты и сталагмиты)
+                const caveElements = document.querySelectorAll('a-sphere, a-cylinder, a-cone');
+                
+                for (let i = 0; i < count; i++) {
+                    const theta = Math.random() * Math.PI * 2;
+                    const phi = Math.acos(2 * Math.random() - 1);
+
+                    // В декартовы координаты
+                    const x = radius * Math.sin(phi) * Math.cos(theta);
+                    const y = Math.abs(radius * Math.sin(phi) * Math.sin(theta));
+                    const z = radius * Math.cos(phi);
+                    
+                    // Позиция для капли
+                    const dropPosition = {
+                    x: x,
+                    y: y,
+                    z: z
+                    };
+                    // Создать контейнер для капли с анимацией
+                    const dropContainer = document.createElement('a-entity');
+                    dropContainer.setAttribute('position', dropPosition);
+                    
+                    // Создать визуальное представление капли (маленькая сфера)
+                    const waterDrop = document.createElement('a-sphere');
+                    waterDrop.setAttribute('radius', 0.1);
+                    waterDrop.setAttribute('color', '#4FA4F7');
+                    waterDrop.setAttribute('transparent', 'true');
+                    waterDrop.setAttribute('opacity', '0.8');
+                    
+                    // Добавить анимацию падения :cite[1]
+                    waterDrop.setAttribute('animation', {
+                    property: 'position',
+                    from: {x: 0, y: 0, z: 0},
+                    to: {x: 0, y: -30, z: 0}, // Падение на 2 метра вниз
+                    dur: 2000 + Math.random() * 3000, // Случайная длительность
+                    easing: 'easeInQuad',
+                    loop: true
+                    });
+                    
+                    // Анимация исчезновения в конце падения
+                    waterDrop.setAttribute('animation__opacity', {
+                    property: 'opacity',
+                    from: 0.8,
+                    to: 0.2,
+                    dur: 5000,
+                    delay: 2000, // Начинать исчезать перед концом падения
+                    easing: 'easeInQuad',
+                    loop: true
+                    });
+                    
+                    // Добавить каплю в контейнер и на сцену
+                    dropContainer.appendChild(waterDrop);
+                    document.querySelector('a-scene').appendChild(dropContainer);
+                }
+            }
+
+        // Использование функции - создать 10 капель
+            create_waterdrop(50,30);
         });
     </script>
 </body>
