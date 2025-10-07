@@ -17,16 +17,17 @@ window.addEventListener('mousemove', (e) => {
 });
 
 ball.addEventListener('mouseenter', () => {
-    if (ball.setAttribute("picked")) return; 
+    if (!ball.getAttribute("picked")) {
+        return; }
     hovering = true;
-        progress = 0;
-        progressFill.style.width = '0%';
-        progressBar.style.display = 'block';
+    progress = 0;
+    progressFill.style.width = '0%';
+    progressBar.style.display = 'block';
     if (!animationId) animationId = requestAnimationFrame(progressLoop);
 });
 
 ball.addEventListener('mouseleave', () => {
-    if (ball.getAttribute("picked")) return;
+    if (!ball.getAttribute("picked")) return;
     hovering = false;
     progress = 0;
     progressFill.style.width = '0%';
