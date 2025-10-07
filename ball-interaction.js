@@ -5,7 +5,8 @@ ball.setAttribute("picked", false);
 const camera = document.querySelector('[camera]');
 const progressBar = document.getElementById('progress-bar');
 const progressFill = document.getElementById('progress-bar-fill');
-      
+
+let newstamp=false;
 let progress = 0;
 const duration = 2000; // 2 секунды
 let hovering = false;
@@ -27,12 +28,13 @@ ball.addEventListener('mouseenter', () => {
 });
 
 ball.addEventListener('mouseleave', () => {
-    if (!ball.getAttribute("picked")) return;
+    //if (!ball.getAttribute("picked")) return;
     hovering = false;
     progress = 0;
     progressFill.style.width = '0%';
     progressBar.style.display = 'none';
     if (animationId) {
+        lastTimestamp=0;
         cancelAnimationFrame(animationId);
         animationId = null;
     }
@@ -40,15 +42,13 @@ ball.addEventListener('mouseleave', () => {
 
 let lastTimestamp = null;
 function progressLoop(timestamp) {
-    if (!lastTimestamp) lastTimestamp = timestamp;
-    const delta = timestamp - lastTimestamp;
+    if (!lastTimestamp || lastTimestamp==0) lastTimestamp = timestamp;
+    delta = timestamp - lastTimestamp;
     lastTimestamp = timestamp;
-
     if (hovering) {
         progress += delta;
         const pct = Math.min(progress / duration, 1);
         progressFill.style.width = (pct * 100) + '%';
-
         if (pct >= 1) {
             fixballToCamera();
             hovering = false;
