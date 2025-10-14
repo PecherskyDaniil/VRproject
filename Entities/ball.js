@@ -62,8 +62,8 @@ export class Ball {
     //Дальше идет ЖОСКИЙ ВАЙБ КОД, можно поменять или забить
     initEventListeners() {
         // Event for picking up the ball
-        document.addEventListener('keyup', (e) => {
-            if (!this.isPicked && !this.isFlying && e.code === 'Space') {
+        this.entity.addEventListener('mousedown', (e) => {
+            if (!this.isPicked && !this.isFlying) {
                 this.pickUp();
             }
         });
@@ -194,11 +194,12 @@ export class Ball {
         
         // Check for ground collision using configurable ground level
         if (newPos.y <= this.groundLevel) {
+            console.log(newPos)
             this.land();
         }
         
         // Simple boundary checking
-        const maxDistance = 50;
+        const maxDistance = 1000000;
         if (Math.abs(newPos.x) > maxDistance || Math.abs(newPos.z) > maxDistance) {
             this.resetBall();
         }

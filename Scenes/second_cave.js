@@ -9,10 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
     scene.appendChild(cave.getEntity());
     scene.appendChild(player.getEntity());
     scene.appendChild(ball.getEntity());
-
+    var x_limit = [-20,55]
+    var z_limit = [-7,11]
     function gameLoop() {// это для того чтобы мяч двигался с игроком
         ball.update();
         requestAnimationFrame(gameLoop);
+        player.limitMovement(x_limit, z_limit);
     }
     gameLoop()
 });
