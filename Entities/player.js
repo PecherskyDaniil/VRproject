@@ -10,6 +10,7 @@ export class Player {
         //this.entity.setAttribute('camera', '');
         //this.entity.setAttribute('look-controls', '');
         this.entity.setAttribute('wasd-controls', '');
+        this.entity.setAttribute('reset-on-collision',"with: .collision")
         // Курсор
         this.entity.innerHTML = `
             <a-cursor></a-cursor>

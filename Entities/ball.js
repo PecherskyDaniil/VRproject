@@ -22,7 +22,7 @@ export class Ball {
         this.camera = null;
         this.throwDirection = new THREE.Vector3(0, 0, -1);
         this.originalPosition = new THREE.Vector3(x, y, z);
-        
+        this.allFloor = this.findAllFloor()
         // Hold position relative to camera
         this.holdDistance = 2;
         this.holdHeight = -0.5;
@@ -170,6 +170,7 @@ export class Ball {
     }
 
     updateFlight() {
+        //console.log(this.isColliding)
         if (!this.isFlying) return;
         
         const currentPos = this.entity.getAttribute('position');
@@ -193,7 +194,7 @@ export class Ball {
         }
         
         // Check for ground collision using configurable ground level
-        if (newPos.y <= this.groundLevel) {
+        if (this.isOnFloor()) {
             console.log(newPos)
             this.land();
         }
@@ -208,15 +209,13 @@ export class Ball {
     land() {
         this.isFlying = false;
         this.velocity.set(0, 0, 0);
-        
         // Set on ground using the configured ground level
         const currentPos = this.entity.getAttribute('position');
         this.entity.setAttribute('position', {
             x: currentPos.x,
-            y: this.groundLevel,
+            y: currentPos.y,
             z: currentPos.z
         });
-        
         // Reset rotation when landed
         this.entity.object3D.rotation.set(0, 0, 0);
         
@@ -280,7 +279,9 @@ export class Ball {
             this.entity.setAttribute('rotation', degreesRotation);
         }
     }
-
+    findAllFloor(){
+        return document.querySelectorAll(".floor");
+    }
     // Alternative method using look-at component for simpler rotation
     updateHeldPositionSimple() {
         if (this.isPicked && this.camera && !this.isFlying) {
@@ -337,5 +338,59 @@ export class Ball {
             this.entity.setAttribute('scale', '1 1 1');
             this.entity.object3D.rotation.set(0, 0, 0);
         }
+    }
+    isOnFloor(){
+        for (var i = 0;i<this.allFloor.length;i++){
+            if (this.checkSphereBoxCollision(this.entity, this.allFloor[i])){
+                return true
+            }
+        }
+        return false
+    }
+    whichFloor(){
+        for (var i = 0;i<this.allFloor.length;i++){
+            if (this.checkSphereBoxCollision(this.entity, this.allFloor[i])){
+                return this.allFloor[i]
+            }
+        }
+    }
+    checkSphereBoxCollision(sphere, box) {
+        // Получаем компоненты позиции и масштаба
+        const spherePos = sphere.object3D.getWorldPosition(new THREE.Vector3());
+        const sphereRadius = sphere.getAttribute('radius') || 0.5;
+        const sphereScale = sphere.object3D.getWorldScale(new THREE.Vector3());
+        const actualSphereRadius = sphereRadius * Math.max(sphereScale.x, sphereScale.y, sphereScale.z);
+        
+        const boxPos = box.object3D.getWorldPosition(new THREE.Vector3());
+        const boxScale = box.object3D.getWorldScale(new THREE.Vector3());
+        const boxSize = box.getAttribute('geometry')?.width ? 
+            new THREE.Vector3(
+            box.getAttribute('geometry').width * boxScale.x,
+            box.getAttribute('geometry').height * boxScale.y,
+            box.getAttribute('geometry').depth * boxScale.z
+            ) : new THREE.Vector3(1 * boxScale.x, 1 * boxScale.y, 1 * boxScale.z);
+        
+        // Получаем матрицу вращения коробки
+        const boxMatrix = new THREE.Matrix4();
+        boxMatrix.extractRotation(box.object3D.matrixWorld);
+        
+        // Преобразуем позицию сферы в локальное пространство коробки
+        const localSpherePos = spherePos.clone().sub(boxPos);
+        localSpherePos.applyMatrix4(new THREE.Matrix4().copy(boxMatrix).invert());
+        
+        // Находим ближайшую точку на коробке к сфере
+        const closestPoint = new THREE.Vector3();
+        closestPoint.x = Math.max(-boxSize.x / 2, Math.min(localSpherePos.x, boxSize.x / 2));
+        closestPoint.y = Math.max(-boxSize.y / 2, Math.min(localSpherePos.y, boxSize.y / 2));
+        closestPoint.z = Math.max(-boxSize.z / 2, Math.min(localSpherePos.z, boxSize.z / 2));
+        
+        // Преобразуем обратно в мировые координаты
+        closestPoint.applyMatrix4(boxMatrix);
+        closestPoint.add(boxPos);
+        
+        // Вычисляем расстояние между сферой и ближайшей точкой
+        const distance = spherePos.distanceTo(closestPoint);
+        
+        return distance <= actualSphereRadius;
     }
 }
