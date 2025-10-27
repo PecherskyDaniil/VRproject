@@ -31,9 +31,15 @@ document.addEventListener('DOMContentLoaded', function () {
     scene.appendChild(ball.getEntity());
     var ambient = new Audio('./music/ambient.mp3');
 
-    //ВОт тут добавляем модель
-    var che_to = new DefaultEntity(2, -1, 2, 1, "lever/leverbase.gltf", 0, 0, 0)// Задаем координаты, размер, путь к модельке и углы поворота
-    scene.appendChild(che_to.getEntity())//Добавляем модель на сцену
+    // Доп. декор — мягкие куртины у колонны, у выходов и в дальних углах
+    var fc_f1 = new DefaultEntity(6,  -1,  6,  4, "lady_fern/wdvlditia_tier_2.gltf", 0,  45, 0); scene.appendChild(fc_f1.getEntity());
+
+    var fc_m2 = new DefaultEntity(-8, -2, -6, 6, "bolete_mushrooms2/qdzrT_tier_2.gltf", 0, 15, 0); scene.appendChild(fc_m2.getEntity());
+    var fc_f2 = new DefaultEntity(-10,-2,  4, 4, "lady_fern/wdvlditia_tier_2.gltf", 0, -10, 0); scene.appendChild(fc_f2.getEntity());
+
+    var fc_m3 = new DefaultEntity(0,  -2.2, -12, 8, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, 0, 0); scene.appendChild(fc_m3.getEntity());
+    var fc_f3 = new DefaultEntity(3,  -2, -13, 4, "lady_fern/wdvlditia_tier_2.gltf", 0, 10, 0); scene.appendChild(fc_f3.getEntity());
+
 
 
     function gameLoop() {// это для того чтобы мяч двигался с игроком
