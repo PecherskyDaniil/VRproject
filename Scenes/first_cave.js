@@ -5,6 +5,7 @@ import { Wall } from '../Entities/invisible_wall.js';
 import { Light } from '../Entities/light.js';
 import { Floor } from '../Entities/floor.js';
 import { Exit } from '../Entities/exit.js';
+import { DefaultEntity } from '../Entities/default_entity.js';//Вот базовый объект для модельки
 document.addEventListener('DOMContentLoaded', function () {
     var scene = document.querySelector("a-scene")
 
@@ -29,6 +30,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const ball = new Ball(9, -1.5, 9, 0.7);
     scene.appendChild(ball.getEntity());
     var ambient = new Audio('./music/ambient.mp3');
+
+    //ВОт тут добавляем модель
+    var che_to = new DefaultEntity(2, -1, 2, 1, "lever/leverbase.gltf", 0, 0, 0)// Задаем координаты, размер, путь к модельке и углы поворота
+    scene.appendChild(che_to.getEntity())//Добавляем модель на сцену
+
 
     function gameLoop() {// это для того чтобы мяч двигался с игроком
         ambient.play();
