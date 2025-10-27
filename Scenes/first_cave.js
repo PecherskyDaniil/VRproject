@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const backwall2 = new Wall(0, -15, 0, 100, 1000, 0);
     const column = new Wall(6, 6, 0, 6, 100, 0);
     const floor = new Floor(0, -4, 0, 0, 1000, 100)
-    const exit = new Exit(0, 0, -14, 20, 20, 20, "http://127.0.0.1:5500/second_scene.html");
+    const exit = new Exit(0, 0, -14, 20, 20, 20, "./second_scene.html");
     scene.appendChild(leftwall.getEntity());
     scene.appendChild(rightwall.getEntity());
     scene.appendChild(backwall1.getEntity());
@@ -28,8 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
     scene.appendChild(exit.getEntity())
     const ball = new Ball(9, -1.5, 9, 0.7);
     scene.appendChild(ball.getEntity());
+    var ambient = new Audio('./music/ambient.mp3');
 
     function gameLoop() {// это для того чтобы мяч двигался с игроком
+        ambient.play();
         ball.update();
         if (ball.isPicked) {
             exit.isOpen = true;

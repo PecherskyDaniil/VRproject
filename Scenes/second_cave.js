@@ -3,7 +3,7 @@ import { Ball } from '../Entities/ball.js';
 import { Cave } from '../Entities/cave.js';
 import { Wall } from '../Entities/invisible_wall.js';
 import { Light } from '../Entities/light.js';
-import {Bridge} from '../Entities/bridge.js';
+import { Bridge } from '../Entities/bridge.js';
 import { Floor } from '../Entities/floor.js';
 import { BallDestroyer } from '../Entities/ball_destroyer.js';
 import { Exit } from '../Entities/exit.js';
@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const barier1 = new Wall(50, 36, 0, 25, 120, 0, false, 48);
     const barier2 = new Wall(-5, 36, 0, 35, 120, 0, false, 48);
     const barier3 = new Wall(25, 36, 0, 25, 120, 0, false, 48);
-    const bridge = new Bridge(25, 60, 20,10,60)
+    const bridge = new Bridge(25, 60, 20, 10, 60)
     const ball_destroyer = new BallDestroyer(0, -40, 30, 150, 60, 60)
-    const exit = new Exit(20, 0, 90, 50, 20, 20, "http://127.0.0.1:5500/third_scene.html");
+    const exit = new Exit(20, 0, 90, 50, 20, 20, "./third_scene.html");
     scene.appendChild(exit.getEntity())
     scene.appendChild(ball_destroyer.getEntity())
     scene.appendChild(leftwall.getEntity());
@@ -50,20 +50,21 @@ document.addEventListener('DOMContentLoaded', function () {
     scene.appendChild(bridge.getEntity())
     console.log(exit.getEntity().getAttribute('position'))
     console.log(player.getEntity().getAttribute('position'))
-    var start=false;
-    var floor_added=false
+    var start = false;
+    var floor_added = false
+    var ambient = new Audio('./music/ambient.mp3');
     function gameLoop() {// это для того чтобы мяч двигался с игроком
-
+        ambient.play();
         if (ball.isPicked) {
             exit.isOpen = true;
-            start=true;
+            start = true;
         }
-        if (ball.checkSphereBoxCollision(ball.entity,bridge.entity) && start && !floor_added){
+        if (ball.checkSphereBoxCollision(ball.entity, bridge.entity) && start && !floor_added) {
             ball.pickUp()
-            floor_added=true
+            floor_added = true
             scene.appendChild(floor3.getEntity());
             scene.appendChild(barier3.getEntity());
-            ball.allFloor=ball.findAllFloor()
+            ball.allFloor = ball.findAllFloor()
             bridge.raise()
         }
         ball.update();

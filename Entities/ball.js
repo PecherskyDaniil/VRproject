@@ -2,6 +2,7 @@ export class Ball {
     constructor(x, y, z, scale, groundLevel = -2) { //x,y,z позиция scale размер и ground level - высота "пола"
         this.entity = document.createElement('a-entity');
         this.setupBall(x, y, z, scale);
+        this.sound = new Audio("./music/ball_sound.mp3");
 
         // Initialize ball state
         this.isPicked = false;
@@ -220,6 +221,7 @@ export class Ball {
     }
 
     land() {
+        this.sound.play();
         this.isFlying = false;
         this.velocity.set(0, 0, 0);
         // Set on ground using the configured ground level
