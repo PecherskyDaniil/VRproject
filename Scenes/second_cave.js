@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Декор: куртины вдоль тропы и у мостика/дальней площадки
     // Входная зона и поворот
-    var sc_m1 = new DefaultEntity(12, -8, -4, 7, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, 30, 0); scene.appendChild(sc_m1.getEntity());
+    var sc_m1 = new DefaultEntity(12, -8, -4, 12, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, 30, 0); scene.appendChild(sc_m1.getEntity());
     var sc_f1 = new DefaultEntity(10, -7,  3, 4, "lady_fern/wdvlditia_tier_2.gltf", 0, -10, 0); scene.appendChild(sc_f1.getEntity());
     var sc_m2 = new DefaultEntity(-8, -4,  5, 8, "bolete_mushrooms2/qdzrT_tier_2.gltf", 0, 15, 0); scene.appendChild(sc_m2.getEntity());
 

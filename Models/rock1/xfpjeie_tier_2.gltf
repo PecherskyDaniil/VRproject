@@ -1,0 +1,201 @@
+{
+    "asset": {
+        "generator": "Khronos glTF Blender I/O v3.6.27",
+        "version": "2.0"
+    },
+    "scene": 0,
+    "scenes": [
+        {
+            "name": "Scene",
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "mesh": 0,
+            "name": "xfpjeie_LOD0_TIER2_000",
+            "rotation": [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ],
+            "scale": [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+            ]
+        }
+    ],
+    "materials": [
+        {
+            "doubleSided": true,
+            "name": "MI_xfpjeie",
+            "normalTexture": {
+                "index": 0
+            },
+            "occlusionTexture": {
+                "index": 1
+            },
+            "pbrMetallicRoughness": {
+                "baseColorTexture": {
+                    "index": 2
+                },
+                "metallicRoughnessTexture": {
+                    "index": 1
+                }
+            },
+            "extras": {
+                "type": "fuzz"
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "S_xfpjeie_tier_2",
+            "primitives": [
+                {
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2,
+                        "TANGENT": 3
+                    },
+                    "indices": 4,
+                    "material": 0
+                }
+            ]
+        }
+    ],
+    "textures": [
+        {
+            "sampler": 0,
+            "source": 0
+        },
+        {
+            "sampler": 0,
+            "source": 1
+        },
+        {
+            "sampler": 0,
+            "source": 2
+        },
+        {
+            "sampler": 0,
+            "source": 3
+        }
+    ],
+    "images": [
+        {
+            "mimeType": "image/png",
+            "name": "T_xfpjeie_2K_N",
+            "uri": "Textures/T_xfpjeie_2K_N.png"
+        },
+        {
+            "mimeType": "image/png",
+            "name": "T_xfpjeie_2K_ORM",
+            "uri": "Textures/T_xfpjeie_2K_ORM.png",
+            "extras": {
+                "compression": "mask"
+            }
+        },
+        {
+            "mimeType": "image/png",
+            "name": "T_xfpjeie_2K_B",
+            "uri": "Textures/T_xfpjeie_2K_B.png"
+        },
+        {
+            "mimeType": "image/png",
+            "name": "T_xfpjeie_2K_F",
+            "uri": "Textures/T_xfpjeie_2K_F.png"
+        }
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "componentType": 5126,
+            "count": 2633,
+            "max": [
+                251.81158447265625,
+                146.1110382080078,
+                3.1925950050354004
+            ],
+            "min": [
+                -253.04603576660156,
+                -16.333362579345703,
+                -192.5232391357422
+            ],
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 1,
+            "componentType": 5126,
+            "count": 2633,
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 2,
+            "componentType": 5126,
+            "count": 2633,
+            "type": "VEC2"
+        },
+        {
+            "bufferView": 3,
+            "componentType": 5126,
+            "count": 2633,
+            "type": "VEC4"
+        },
+        {
+            "bufferView": 4,
+            "componentType": 5123,
+            "count": 14274,
+            "type": "SCALAR"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteLength": 31596,
+            "byteOffset": 0,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 31596,
+            "byteOffset": 31596,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 21064,
+            "byteOffset": 63192,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 42128,
+            "byteOffset": 84256,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 28548,
+            "byteOffset": 126384,
+            "target": 34963
+        }
+    ],
+    "samplers": [
+        {
+            "magFilter": 9729,
+            "minFilter": 9987
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 154932,
+            "uri": "xfpjeie_tier_2.bin"
+        }
+    ]
+}

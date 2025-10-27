@@ -75,6 +75,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var tc_m5 = new DefaultEntity(0,  -6, -15, 6, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, 0, 0);  scene.appendChild(tc_m5.getEntity());
     var tc_m6 = new DefaultEntity(20, -6, -12, 5, "bolete_mushrooms2/qdzrT_tier_2.gltf", 0, 25, 0); scene.appendChild(tc_m6.getEntity());
 
+    // Камни по углам центрального зала
+    var tc_r1 = new DefaultEntity(-13, -1,  13, 3, "rock1/xfpjeie_tier_2.gltf", 0, 20, 0); scene.appendChild(tc_r1.getEntity());
+    var tc_r2 = new DefaultEntity( 33, -1,  13, 3, "rock1/xfpjeie_tier_2.gltf", 0,-30, 0); scene.appendChild(tc_r2.getEntity());
+    var tc_r3 = new DefaultEntity(-13, -1, -48, 3, "rock1/xfpjeie_tier_2.gltf", 0,  5, 0); scene.appendChild(tc_r3.getEntity());
+    var tc_r4 = new DefaultEntity( 33, -1, -48, 3, "rock1/xfpjeie_tier_2.gltf", 0, 15, 0); scene.appendChild(tc_r4.getEntity());
 
     function gameLoop() {// это для того чтобы мяч двигался с игроком
         ambient.play();

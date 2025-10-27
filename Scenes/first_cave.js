@@ -40,6 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var fc_m3 = new DefaultEntity(0,  -2.2, -12, 8, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, 0, 0); scene.appendChild(fc_m3.getEntity());
     var fc_f3 = new DefaultEntity(3,  -2, -13, 4, "lady_fern/wdvlditia_tier_2.gltf", 0, 10, 0); scene.appendChild(fc_f3.getEntity());
 
+    // Камни по углам
+    var fc_r1 = new DefaultEntity(-13, -1, -13, 2, "rock1/xfpjeie_tier_2.gltf", 0, 25, 0); scene.appendChild(fc_r1.getEntity());
+    var fc_r2 = new DefaultEntity( 13, -1, -13, 2, "rock1/xfpjeie_tier_2.gltf", 0,-10, 0); scene.appendChild(fc_r2.getEntity());
+    var fc_r3 = new DefaultEntity(-13, -1,  13, 3, "rock1/xfpjeie_tier_2.gltf", 0, 40, 0); scene.appendChild(fc_r3.getEntity());
+    var fc_r4 = new DefaultEntity( 13, -1,  13, 3, "rock1/xfpjeie_tier_2.gltf", 0,  5, 0); scene.appendChild(fc_r4.getEntity());
+
 
 
     function gameLoop() {// это для того чтобы мяч двигался с игроком
