@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const downwall1 = new Wall(0, 62, -32, 120, 50, 0);
     const downwall2 = new Wall(0, 11, -30, 120, 50, 0);
     const barier1 = new Wall(50, 36, 0, 25, 120, 0, false, 48);
-    const barier2 = new Wall(0, 36, 0, 25, 120, 0, false, 48);
+    const barier2 = new Wall(-5, 36, 0, 35, 120, 0, false, 48);
     const barier3 = new Wall(25, 36, 0, 25, 120, 0, false, 48);
     const bridge = new Bridge(25, 60, 20,10,60)
     const ball_destroyer = new BallDestroyer(0, -40, 30, 150, 60, 60)
