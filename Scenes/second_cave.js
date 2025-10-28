@@ -7,6 +7,7 @@ import { Bridge } from '../Entities/bridge.js';
 import { Floor } from '../Entities/floor.js';
 import { BallDestroyer } from '../Entities/ball_destroyer.js';
 import { Exit } from '../Entities/exit.js';
+import { DefaultEntity } from '../Entities/default_entity.js';
 document.addEventListener('DOMContentLoaded', function () {
     var scene = document.querySelector("a-scene")
     const player = new Player(0, 1.6, 5);
@@ -53,6 +54,23 @@ document.addEventListener('DOMContentLoaded', function () {
     var start = false;
     var floor_added = false
     var ambient = new Audio('./music/ambient.mp3');
+
+    // Декор: куртины вдоль тропы и у мостика/дальней площадки
+    // Входная зона и поворот
+    var sc_m1 = new DefaultEntity(12, -8, -4, 12, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, 30, 0); scene.appendChild(sc_m1.getEntity());
+    var sc_f1 = new DefaultEntity(10, -7,  3, 4, "lady_fern/wdvlditia_tier_2.gltf", 0, -10, 0); scene.appendChild(sc_f1.getEntity());
+    var sc_m2 = new DefaultEntity(-8, -4,  5, 8, "bolete_mushrooms2/qdzrT_tier_2.gltf", 0, 15, 0); scene.appendChild(sc_m2.getEntity());
+
+    // Подход к мосту (держимся ближе к краям «дорожки»)
+    var sc_f2 = new DefaultEntity(23, -9,  8, 4, "lady_fern/wdvlditia_tier_2.gltf", 0, 20, 0); scene.appendChild(sc_f2.getEntity());
+    var sc_m3 = new DefaultEntity(33, -9,  9, 7, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, -15, 0); scene.appendChild(sc_m3.getEntity());
+
+    // Дальняя платформа у выхода (зона z≈90)
+    var sc_m4 = new DefaultEntity(18, -2.3, 86, 8, "bolete_mushrooms2/qdzrT_tier_2.gltf", 0, 0, 0);  scene.appendChild(sc_m4.getEntity());
+    var sc_f3 = new DefaultEntity(22, -2.3, 92, 4, "lady_fern/wdvlditia_tier_2.gltf", 0, 35, 0);   scene.appendChild(sc_f3.getEntity());
+    var sc_m5 = new DefaultEntity(26, -2.1, 88, 6, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, -25, 0); scene.appendChild(sc_m5.getEntity());
+
+
     function gameLoop() {// это для того чтобы мяч двигался с игроком
         ambient.play();
         if (ball.isPicked) {

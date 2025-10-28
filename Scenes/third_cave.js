@@ -8,6 +8,9 @@ import { Floor } from '../Entities/floor.js';
 import { Exit } from '../Entities/exit.js';
 import { Lift } from '../Entities/lift.js';
 import { Rope } from '../Entities/rope.js';
+import { DefaultEntity } from '../Entities/default_entity.js';
+
+
 document.addEventListener('DOMContentLoaded', function () {
     var scene = document.querySelector("a-scene")
     const player = new Player(0, 1.6, 9);
@@ -53,6 +56,31 @@ document.addEventListener('DOMContentLoaded', function () {
     var x_limit = [-20, 55]
     var z_limit = [-7, 11]
     var ambient = new Audio('./music/ambient.mp3');
+
+    // Декор: у входа, возле сталактитов и вокруг лифта
+    // Входная полянка
+    var tc_m1 = new DefaultEntity(-6, -5, -3, 5, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, 10, 0); scene.appendChild(tc_m1.getEntity());
+    var tc_f1 = new DefaultEntity(-4, -5, -5, 4, "lady_fern/wdvlditia_tier_2.gltf", 0, -5, 0);   scene.appendChild(tc_f1.getEntity());
+
+    // Центральный зал вдоль пути
+    var tc_m2 = new DefaultEntity(18, -5, -2, 7, "bolete_mushrooms2/qdzrT_tier_2.gltf", 0, 20, 0); scene.appendChild(tc_m2.getEntity());
+    var tc_f2 = new DefaultEntity(24, -5, -8, 4, "lady_fern/wdvlditia_tier_2.gltf", 0, 30, 0);    scene.appendChild(tc_f2.getEntity());
+
+    // Район лифта и верёвки
+    var tc_f3 = new DefaultEntity(5,  -6, -36, 4, "lady_fern/wdvlditia_tier_2.gltf", 0, 0, 0);    scene.appendChild(tc_f3.getEntity());
+    var tc_m3 = new DefaultEntity(7,  -6, -38, 6, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, -15, 0); scene.appendChild(tc_m3.getEntity());
+    var tc_m4 = new DefaultEntity(3,  -7, -42, 8, "bolete_mushrooms2/qdzrT_tier_2.gltf", 0, 10, 0); scene.appendChild(tc_m4.getEntity());
+
+    // Между сталагмитами — аккуратные пятна, не мешают триггерам падения
+    var tc_m5 = new DefaultEntity(0,  -6, -15, 6, "bolete_mushrooms/Bolete_Mushrooms_pdvcB_Mid.gltf", 0, 0, 0);  scene.appendChild(tc_m5.getEntity());
+    var tc_m6 = new DefaultEntity(20, -6, -12, 5, "bolete_mushrooms2/qdzrT_tier_2.gltf", 0, 25, 0); scene.appendChild(tc_m6.getEntity());
+
+    // Камни по углам центрального зала
+    var tc_r1 = new DefaultEntity(-13, -1,  13, 3, "rock1/xfpjeie_tier_2.gltf", 0, 20, 0); scene.appendChild(tc_r1.getEntity());
+    var tc_r2 = new DefaultEntity( 33, -1,  13, 3, "rock1/xfpjeie_tier_2.gltf", 0,-30, 0); scene.appendChild(tc_r2.getEntity());
+    var tc_r3 = new DefaultEntity(-13, -1, -48, 3, "rock1/xfpjeie_tier_2.gltf", 0,  5, 0); scene.appendChild(tc_r3.getEntity());
+    var tc_r4 = new DefaultEntity( 33, -1, -48, 3, "rock1/xfpjeie_tier_2.gltf", 0, 15, 0); scene.appendChild(tc_r4.getEntity());
+
     function gameLoop() {// это для того чтобы мяч двигался с игроком
         ambient.play();
         if (ball.isPicked) {
